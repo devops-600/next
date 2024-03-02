@@ -6,7 +6,7 @@ export default function Page() {
   return (
     <>
       <h1>App Router</h1>
-      <p>hi</p>
+      <p>hi pipeline</p>
     </>
   );
 }
