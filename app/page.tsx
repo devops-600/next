@@ -7,6 +7,7 @@ export default function Page() {
     <>
       <h1>App Router</h1>
       <p>hi pipeline</p>
+      <p>2024-03-02</p>
     </>
   );
 }
