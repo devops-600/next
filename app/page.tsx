@@ -3,8 +3,10 @@ export const metadata = {
 };
 
 export default function Page() {
-  return <>
-    <h1>App Router</h1>
-    <p>pipe</p>
-  </>;
+  return (
+    <>
+      <h1>App Router</h1>
+      <p>hi</p>
+    </>
+  );
 }
