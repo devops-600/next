@@ -27,7 +27,7 @@ pipeline {
     }
     stage('Building image') {
       steps {
-        sh 'docker build -t $MYREPO:$BUILD_NUMBER .'
+        sh 'docker build -t $MYREPO:$BUILD_NUMBER --shm-size 2G .'
         sh 'echo $DOCKERHUB_CREDENTIALS_PSW | docker login -u $DOCKERHUB_CREDENTIALS_USR --password-stdin'
         sh 'docker push $MYREPO:$BUILD_NUMBER'
       }
