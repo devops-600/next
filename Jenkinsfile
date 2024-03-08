@@ -27,16 +27,16 @@ pipeline {
     }
     stage('Building image') {
       steps {
+        sh 'echo $DOCKERHUB_CREDENTIALS_PSW | docker login -u $DOCKERHUB_CREDENTIALS_USR --password-stdin'
         script {
-          sh 'echo $DOCKERHUB_CREDENTIALS_PSW | docker login -u $DOCKERHUB_CREDENTIALS_USR --password-stdin'
           dockerImage = docker.build("${MYREGISTRY}:${env.BUILD_ID}")
           dockerImage.push()
         }
       }
-      stage('Deploy') {
-        steps {
-          sh './deploy.sh'
-        }
+    }
+    stage('Deploy') {
+      steps {
+        sh './deploy.sh'
       }
     }
   }
