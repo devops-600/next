@@ -6,7 +6,7 @@ pipeline {
   }
   environment {
     MYREGISTRY = 'kkzxak47/nextjs-app'
-    MYREGISTRYCREDENTIAL = 'dockerhub-kkzxak47'
+    DOCKERHUB_CREDENTIALS = '05a4b886-4182-4540-8523-9b048ad075a2'
   }
 
   stages {
@@ -28,16 +28,9 @@ pipeline {
     stage('Building image') {
       steps {
         script {
-          dockerImage = docker.build MYREGISTRY + ":$BUILD_NUMBER"
-        }
-      }
-    }
-    stage('Deploy Image') {
-      steps {
-        script {
-          docker.withRegistry('', MYREGISTRYCREDENTIAL)
+          sh 'echo $DOCKERHUB_CREDENTIALS_PSW | docker login -u $DOCKERHUB_CREDENTIALS_USR --password-stdin'
+          dockerImage = docker.build("${MYREGISTRY}:${env.BUILD_ID}")
           dockerImage.push()
-        }
       }
     }
     stage('Deploy') {
