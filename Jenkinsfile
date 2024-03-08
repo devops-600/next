@@ -6,7 +6,7 @@ pipeline {
   }
   environment {
     MYREGISTRY = 'kkzxak47/nextjs-app'
-    DOCKERHUB_CREDENTIALS = '05a4b886-4182-4540-8523-9b048ad075a2'
+    DOCKERHUB_CREDENTIALS = credentials('05a4b886-4182-4540-8523-9b048ad075a2')
   }
 
   stages {
