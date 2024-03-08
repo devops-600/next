@@ -10,7 +10,7 @@ sudo -u lighthouse pm2 show $APPNAME
 if [ $? -ne 0 ]
 then
   echo "$APPNAME does not exist, creating"
-  cd /www/next/ && sudo -u lighthouse pm2 start "npm run start" --name $APPNAME
+  cd /www/next/ && sudo -u lighthouse pm2 start "yarn start" --name $APPNAME
 else
   echo "$APPNAME exists, restarting"
   cd /www/next/ && sudo -u lighthouse pm2 stop $APPNAME

@@ -1,7 +1,7 @@
 pipeline {
   agent any
   options {
-    buildDiscarder(logRotator(numToKeepStr: '5', daysToKeepStr: '5'))
+    buildDiscarder(logRotator(numToKeepStr: '135', daysToKeepStr: '135'))
     timestamps()
   }
   environment {
@@ -12,22 +12,22 @@ pipeline {
   stages {
     stage('Install') {
       steps {
-        sh 'npm install'
+        sh 'yarn install'
       }
     }
     stage('Test') {
       steps {
-        sh 'npm run test'
+        sh 'yarn test'
       }
     }
     stage('Build') {
       steps {
-        sh 'npm run build'
+        sh 'yarn build'
       }
     }
     stage('Building image') {
       steps {
-        sh 'docker build -t $MYREPO:$BUILD_NUMBER .'
+        sh 'docker build -t $MYREPO:$BUILD_NUMBER --shm-size 2G .'
         sh 'echo $DOCKERHUB_CREDENTIALS_PSW | docker login -u $DOCKERHUB_CREDENTIALS_USR --password-stdin'
         sh 'docker push $MYREPO:$BUILD_NUMBER'
       }
