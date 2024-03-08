@@ -1,11 +1,17 @@
-FROM node:20-alpine
-
-WORKDIR /usr/src/app
-ENV PORT 3000
+FROM node:20-alpine as builder
+WORKDIR /app
 COPY package.json yarn.lock ./
-ENV YARN_CACHE_FOLDER=/dev/shm/yarn_cache
-RUN yarn install --production --frozen-lockfile
-
+RUN yarn install --frozen-lockfile
 COPY . .
+RUN yarn build
+
+FROM node:20-alpine as runner
+WORKDIR /app
+COPY --from=builder /app/package.json ./
+COPY --from=builder /app/yarn.lock ./
+COPY --from=builder /app/next.config.js ./
+COPY --from=builder /app/public ./public
+COPY --from=builder /app/.next/standalone ./
+COPY --from=builder /app/.next/static ./.next/static
 EXPOSE 3000
-CMD ["yarn", "start"]
+ENTRYPOINT ["node", "server.js"]
