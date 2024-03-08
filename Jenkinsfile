@@ -25,7 +25,7 @@ pipeline {
         sh 'yarn build'
       }
     }
-    stage('Building image') {
+    stage('Make Image') {
       steps {
         sh 'docker build -t $MYREPO:$BUILD_NUMBER .'
         sh 'echo $DOCKERHUB_CREDENTIALS_PSW | docker login -u $DOCKERHUB_CREDENTIALS_USR --password-stdin'
