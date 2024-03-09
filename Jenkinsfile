@@ -22,13 +22,12 @@ pipeline {
     }
     stage('Build') {
       steps {
-        sh 'yarn build'
-      }
-    }
-    stage('Make Image') {
-      steps {
         sh 'docker build -t $MYREPO:$BUILD_NUMBER .'
         sh 'docker tag $MYREPO:$BUILD_NUMBER $MYREPO:latest'
+      }
+    }
+    stage('Push Image to DockerHub') {
+      steps {
         sh 'echo $DOCKERHUB_CREDENTIALS_PSW | docker login -u $DOCKERHUB_CREDENTIALS_USR --password-stdin'
         sh 'docker push $MYREPO:$BUILD_NUMBER'
         sh 'docker push $MYREPO:latest'
@@ -36,7 +35,7 @@ pipeline {
     }
     stage('Deploy') {
       steps {
-        sh './deploy.sh'
+        sh './deploy-docker.sh'
       }
     }
   }
