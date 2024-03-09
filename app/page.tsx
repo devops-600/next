@@ -12,6 +12,7 @@ export default function Page() {
         way to go <del>no</del>
         <strong>yes</strong>
       </p>
+      <h2>long time no see</h2>
     </>
   );
 }
