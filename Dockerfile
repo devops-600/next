@@ -4,7 +4,6 @@ COPY package.json ./
 COPY yarn.lock ./
 COPY next.config.js ./
 COPY public ./public
-COPY .next/standalone ./
-COPY .next/static ./.next/static
+COPY .next ./
 EXPOSE 3000
 ENTRYPOINT ["node", "server.js"]
