@@ -1,7 +1,8 @@
 #!/usr/bin/env bash
 NAME="mysite3000"
+
 if [ "$(docker inspect $NAME --format '{{.State.Status}}')" = "running" ]; then
-  echo "the container is running!"
+  echo "the container is running"
   echo "stopping"
   docker stop $NAME
   echo "$NAME stopped"
