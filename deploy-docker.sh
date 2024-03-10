@@ -15,3 +15,4 @@ if [ "$(docker inspect $NAME --format '{{.State.Status}}')" = "exited" ]; then
 fi
 
 docker run -d -p 3000:3000 --name $NAME kkzxak47/nextjs-app:latest
+echo "$NAME started"
