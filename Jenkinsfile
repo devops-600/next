@@ -23,11 +23,15 @@ pipeline {
     stage('Build') {
       steps {
         sh 'yarn build'
+      }
+    }
+    stage('Image') {
+      steps {
         sh 'docker build -t $MYREPO:$BUILD_NUMBER .'
         sh 'docker tag $MYREPO:$BUILD_NUMBER $MYREPO:latest'
       }
     }
-    stage('Push Image to DockerHub') {
+    stage('DockerHub') {
       steps {
         catchError(buildResult: 'SUCCESS', stageResult: 'FAILURE') {
           sh 'echo $DOCKERHUB_CREDENTIALS_PSW | docker login -u $DOCKERHUB_CREDENTIALS_USR --password-stdin'
