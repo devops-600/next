@@ -13,6 +13,7 @@ export default function Page() {
         <strong>yes</strong>
       </p>
       <p>long time no see</p>
+      <div>hello again</div>
     </>
   );
 }
