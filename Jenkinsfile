@@ -34,9 +34,11 @@ pipeline {
     stage('DockerHub') {
       steps {
         catchError(buildResult: 'SUCCESS', stageResult: 'FAILURE') {
-          sh 'echo $DOCKERHUB_CREDENTIALS_PSW | docker login -u $DOCKERHUB_CREDENTIALS_USR --password-stdin'
-          sh 'docker push $MYREPO:$BUILD_NUMBER'
-          sh 'docker push $MYREPO:latest'
+          echo 'dockerhub login'
+          // sh 'echo $DOCKERHUB_CREDENTIALS_PSW | docker login -u $DOCKERHUB_CREDENTIALS_USR --password-stdin'
+          echo 'dockerhub push'
+          // sh 'docker push $MYREPO:$BUILD_NUMBER'
+          // sh 'docker push $MYREPO:latest'
         }
       }
     }
@@ -48,7 +50,8 @@ pipeline {
   }
   post {
     always {
-      sh 'docker logout'
+      echo 'docker logout'
+      // sh 'docker logout'
     }
   }
 }
