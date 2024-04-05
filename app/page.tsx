@@ -1,19 +1,22 @@
+import styles from "./page.module.css"
+
 export const metadata = {
   title: "App Router",
 };
 
 export default function Page() {
+    const authenticate = () => {
+        console.log("hi");
+    }
+
   return (
-    <>
-      <h1>App Router</h1>
-      <p>hi pipeline zx</p>
-      <p>2024-03-08</p>
-      <p>
-        way to go <del>no</del>
-        <strong>yes</strong>
-      </p>
-      <p>long time no see</p>
-      <div>hello again</div>
-    </>
+    <div>
+      <h1 className="text-3xl font-bold underline">App Router</h1>
+        <form className={styles.center}>
+            <input type="email" name="email" placeholder="Email" required />
+            <input type="password" name="password" placeholder="Password" required />
+            <button type="submit">Login</button>
+        </form>
+    </div>
   );
 }
