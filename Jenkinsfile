@@ -1,7 +1,10 @@
 pipeline {
+  // Execute the Pipeline, or stage, on any available agent
   agent any
   options {
-    buildDiscarder(logRotator(numToKeepStr: '135', daysToKeepStr: '135'))
+    // keep only 100 most recent builds, keep a build for 365 days
+    buildDiscarder(logRotator(numToKeepStr: '100', daysToKeepStr: '365'))
+    // Enable timestamps in build log console
     timestamps()
   }
   environment {
