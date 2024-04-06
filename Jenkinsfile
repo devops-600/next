@@ -4,12 +4,11 @@ pipeline {
   options {
     // keep only 100 most recent builds, keep a build for 365 days
     buildDiscarder(logRotator(numToKeepStr: '100', daysToKeepStr: '365'))
-    // Enable timestamps in build log console
+    // Enable timestamps globally in build log console
     timestamps()
   }
   environment {
     MYREPO = 'kkzxak47/nextjs-app'
-    // DOCKERHUB_CREDENTIALS = credentials('05a4b886-4182-4540-8523-9b048ad075a2')
     GHCR_CREDENTIALS = credentials('github-next-600-token')
   }
 
@@ -31,15 +30,12 @@ pipeline {
     }
     stage('Image') {
       steps {
-        // echo 'tag dockerhub'
-        // sh 'docker build -t $MYREPO:$BUILD_NUMBER .'
-        // sh 'docker tag $MYREPO:$BUILD_NUMBER $MYREPO:latest'
         echo 'tag ghcr.io'
         sh 'docker build -t ghcr.io/$MYREPO:$BUILD_NUMBER .'
         sh 'docker tag ghcr.io/$MYREPO:$BUILD_NUMBER ghcr.io/$MYREPO:latest'
       }
     }
-    stage('DockerHub') {
+    stage('ghcr.io') {
       steps {
         catchError(buildResult: 'SUCCESS', stageResult: 'FAILURE') {
           echo 'ghcr login'
@@ -47,11 +43,6 @@ pipeline {
           echo 'ghcr push'
           sh 'docker push ghcr.io/$MYREPO:$BUILD_NUMBER'
           sh 'docker push ghcr.io/$MYREPO:latest'
-          // echo 'dockerhub login'
-//           sh 'echo $DOCKERHUB_CREDENTIALS_PSW | docker login -u $DOCKERHUB_CREDENTIALS_USR --password-stdin'
-          // echo 'dockerhub push'
-//           sh 'docker push $MYREPO:$BUILD_NUMBER'
-//           sh 'docker push $MYREPO:latest'
         }
       }
     }
@@ -63,8 +54,7 @@ pipeline {
   }
   post {
     always {
-      echo 'dockerhub logout'
-      // sh 'docker logout'
+      echo 'ghcr.io logout'
       sh 'docker logout ghcr.io'
     }
   }
