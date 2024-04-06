@@ -9,7 +9,8 @@ pipeline {
   }
   environment {
     MYREPO = 'kkzxak47/nextjs-app'
-    DOCKERHUB_CREDENTIALS = credentials('05a4b886-4182-4540-8523-9b048ad075a2')
+    // DOCKERHUB_CREDENTIALS = credentials('05a4b886-4182-4540-8523-9b048ad075a2')
+    GHCR_CREDENTIALS = credentials('github-next-600-token')
   }
 
   stages {
@@ -37,9 +38,14 @@ pipeline {
     stage('DockerHub') {
       steps {
         catchError(buildResult: 'SUCCESS', stageResult: 'FAILURE') {
-          echo 'dockerhub login'
+          echo 'ghcr login'
+          sh 'echo $GHCR_CREDENTIALS_PSW | docker login ghcr.io -u $GHCR_CREDENTIALS_USR --password-stdin'
+          echo 'ghcr push'
+          sh 'docker push ghcr.io/kkzxak47/$MYREPO:$BUILD_NUMBER'
+          sh 'docker push ghcr.io/kkzxak47/$MYREPO:latest'
+          // echo 'dockerhub login'
 //           sh 'echo $DOCKERHUB_CREDENTIALS_PSW | docker login -u $DOCKERHUB_CREDENTIALS_USR --password-stdin'
-          echo 'dockerhub push'
+          // echo 'dockerhub push'
 //           sh 'docker push $MYREPO:$BUILD_NUMBER'
 //           sh 'docker push $MYREPO:latest'
         }
@@ -54,7 +60,7 @@ pipeline {
   post {
     always {
       echo 'dockerhub logout'
-//       sh 'docker logout'
+      sh 'docker logout'
     }
   }
 }
