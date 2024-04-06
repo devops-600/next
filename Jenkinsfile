@@ -31,8 +31,12 @@ pipeline {
     }
     stage('Image') {
       steps {
-        sh 'docker build -t $MYREPO:$BUILD_NUMBER .'
-        sh 'docker tag $MYREPO:$BUILD_NUMBER $MYREPO:latest'
+        // echo 'tag dockerhub'
+        // sh 'docker build -t $MYREPO:$BUILD_NUMBER .'
+        // sh 'docker tag $MYREPO:$BUILD_NUMBER $MYREPO:latest'
+        echo 'tag ghcr.io'
+        sh 'docker build -t ghcr.io/$MYREPO:$BUILD_NUMBER .'
+        sh 'docker tag ghcr.io/$MYREPO:$BUILD_NUMBER ghcr.io/$MYREPO:latest'
       }
     }
     stage('DockerHub') {
@@ -41,8 +45,8 @@ pipeline {
           echo 'ghcr login'
           sh 'echo $GHCR_CREDENTIALS_PSW | docker login ghcr.io -u $GHCR_CREDENTIALS_USR --password-stdin'
           echo 'ghcr push'
-          sh 'docker push ghcr.io/kkzxak47/$MYREPO:$BUILD_NUMBER'
-          sh 'docker push ghcr.io/kkzxak47/$MYREPO:latest'
+          sh 'docker push ghcr.io/$MYREPO:$BUILD_NUMBER'
+          sh 'docker push ghcr.io/$MYREPO:latest'
           // echo 'dockerhub login'
 //           sh 'echo $DOCKERHUB_CREDENTIALS_PSW | docker login -u $DOCKERHUB_CREDENTIALS_USR --password-stdin'
           // echo 'dockerhub push'
