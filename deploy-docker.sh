@@ -14,5 +14,5 @@ if [ "$(docker inspect $NAME --format '{{.State.Status}}')" = "exited" ]; then
   echo "$NAME deleted"
 fi
 
-docker run -d -p 3000:3000 --name $NAME kkzxak47/nextjs-app:latest
+docker run -d -p 3000:3000 --name $NAME ghcr.io/kkzxak47/nextjs-app:latest
 echo "$NAME started"
