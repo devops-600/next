@@ -64,7 +64,8 @@ pipeline {
   post {
     always {
       echo 'dockerhub logout'
-      sh 'docker logout'
+      // sh 'docker logout'
+      sh 'docker logout ghcr.io'
     }
   }
 }
