@@ -1,4 +1,4 @@
-export const Aws = () => {
+const Aws = () => {
     return (
         <div>aws</div>
     );
