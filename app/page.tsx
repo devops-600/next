@@ -5,6 +5,10 @@ export const metadata = {
 };
 
 export default function Page() {
+  const handleClick = (e) => {
+    console.log(e);
+    alert("clicked login");
+  };
   return (
     <div className={styles.index}>
       <h1 className="text-3xl font-bold underline mb-4">Operations Platform</h1>
@@ -19,7 +23,9 @@ export default function Page() {
             required
           />
           <br />
-          <button type="submit">Login</button>
+          <button type="submit" onClick={handleClick}>
+            Login
+          </button>
           <br />
         </form>
       </div>

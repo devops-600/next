@@ -11,6 +11,9 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body>
+        <header>
+          <h1>Hello</h1>
+        </header>
         {children}
         <footer>
           <h2 className={styles.flex}>
