@@ -6,7 +6,7 @@ import styles from "./page.module.css";
 // };
 
 export default function Page() {
-  const handleClick = (e) => {
+  const handleClick = (e: Event) => {
     console.log(e);
     alert("clicked login");
   };
