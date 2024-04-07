@@ -37,10 +37,10 @@ pipeline {
       steps {
         catchError(buildResult: 'SUCCESS', stageResult: 'FAILURE') {
           echo 'ghcr login'
-          sh 'echo $GHCR_CREDENTIALS_PSW | docker login ghcr.io -u $GHCR_CREDENTIALS_USR --password-stdin'
+          // sh 'echo $GHCR_CREDENTIALS_PSW | docker login ghcr.io -u $GHCR_CREDENTIALS_USR --password-stdin'
           echo 'ghcr push'
-          sh 'docker push ghcr.io/$MYREPO:$BUILD_NUMBER'
-          sh 'docker push ghcr.io/$MYREPO:latest'
+          // sh 'docker push ghcr.io/$MYREPO:$BUILD_NUMBER'
+          // sh 'docker push ghcr.io/$MYREPO:latest'
         }
       }
     }
@@ -53,7 +53,7 @@ pipeline {
   post {
     always {
       echo 'ghcr.io logout'
-      sh 'docker logout ghcr.io'
+      // sh 'docker logout ghcr.io'
     }
   }
 }
