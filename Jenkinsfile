@@ -26,7 +26,7 @@ pipeline {
         sh 'yarn build'
       }
     }
-    stage('Image') {
+    stage('Image and tag') {
       steps {
         echo 'tag ghcr.io'
         sh 'docker build -t ghcr.io/$MYREPO:$BUILD_NUMBER .'
