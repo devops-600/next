@@ -1,11 +1,13 @@
 .center {
+    display: flex;
     margin: 0 auto;
-    width: 1200px;
-    height: 400px;
-    background-color: purple;
-
+    width: 200px;
+    height: 80px;
+    /* background-color: purple; */
+    text-align: center;
 }
 
 .index {
     background-color: #eee;
+    text-align: center;
 }

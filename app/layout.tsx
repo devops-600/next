@@ -1,4 +1,7 @@
-import '../styles/global.css'
+import "../styles/global.css";
+import Image from "next/image";
+import copyleft from "../public/copyleft.svg";
+import styles from "./layout.module.css";
 
 export default function RootLayout({
   children,
@@ -7,7 +10,16 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body>{children}<footer><h2>Footer</h2></footer></body>
+      <body>
+        {children}
+        <footer>
+          <h2 className={styles.flex}>
+            DevOps600
+            <Image src={copyleft} alt="copyleft" width="20" height="20"></Image>
+            &nbsp;&nbsp;Copyleft 2024
+          </h2>
+        </footer>
+      </body>
     </html>
   );
 }
