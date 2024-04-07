@@ -6,7 +6,7 @@ import styles from "./page.module.css";
 // };
 
 export default function Page() {
-  const handleClick = (e: Event) => {
+  const handleClick = (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
     console.log(e);
     alert("clicked login");
   };
