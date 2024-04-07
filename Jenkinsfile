@@ -4,8 +4,6 @@ pipeline {
   options {
     // keep only 100 most recent builds, keep a build for 365 days
     buildDiscarder(logRotator(numToKeepStr: '100', daysToKeepStr: '365'))
-    // Enable timestamps globally in build log console
-    timestamps()
   }
   environment {
     MYREPO = 'kkzxak47/nextjs-app'
