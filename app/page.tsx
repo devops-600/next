@@ -13,7 +13,8 @@ export default function HomePage() {
   const [password, setPassword] = useState("");
   const router = useRouter();
 
-  const handleClickButton = () => {
+  const handleOnSubmit = (e: any) => {
+    e.preventDefault();
     if (!username || !password) return;
     localStorage.setItem("username", username);
     localStorage.setItem("password", password);
@@ -24,9 +25,9 @@ export default function HomePage() {
     <div className={styles.index}>
       <h1 className="text-3xl font-bold mb-8">Operations Platform</h1>
       <div className={styles.center}>
-        <form action="#">
+        <form onSubmit={handleOnSubmit}>
           <input
-            type="email"
+            type="text"
             name="email"
             placeholder="Email/Username"
             onChange={(e) => setUsername(e.target.value)}
@@ -42,9 +43,7 @@ export default function HomePage() {
           />
           <br />
           {/* <Link href="/aws"> */}
-          <button type="submit" onClick={handleClickButton}>
-            Login
-          </button>
+          <button type="submit">Login</button>
           {/* </Link> */}
           <br />
         </form>
