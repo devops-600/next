@@ -1,13 +1,23 @@
+"use client";
 import { useState } from "react";
 import styles from "./page.module.css";
-import Link from "next/link";
+// import Link from "next/link";
+import { useRouter } from "next/navigation";
 
 // export const metadata = {
 //   title: "Operations Platform",
 // };
 
 export default function HomePage() {
-  // const [username, setUsername] = useState("");
+  const [username, setUsername] = useState("");
+  const [password, setPassword] = useState("");
+  const router = useRouter();
+
+  const handleClickButton = () => {
+    localStorage.setItem("username", username);
+    localStorage.setItem("password", password);
+    router.push("/aws");
+  };
 
   return (
     <div className={styles.index}>
@@ -18,6 +28,7 @@ export default function HomePage() {
             type="email"
             name="email"
             placeholder="Email/Username"
+            onChange={(e) => setUsername(e.target.value)}
             required
           />
           <br />
@@ -25,12 +36,15 @@ export default function HomePage() {
             type="password"
             name="password"
             placeholder="Password"
+            onChange={(e) => setPassword(e.target.value)}
             required
           />
           <br />
-          <Link href="/aws">
-            <button type="submit">Login</button>
-          </Link>
+          {/* <Link href="/aws"> */}
+          <button type="submit" onClick={handleClickButton}>
+            Login
+          </button>
+          {/* </Link> */}
           <br />
         </form>
       </div>

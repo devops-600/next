@@ -1,0 +1,13 @@
+.layout {
+  display: flex;
+}
+
+.nav {
+  flex: 1;
+}
+
+.content {
+  flex: 11;
+  width: 1000px;
+  height: 600px;
+}

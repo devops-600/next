@@ -3,6 +3,13 @@
  */
 import { render, screen } from "@testing-library/react";
 import HomePage from "@/app/page";
+jest.mock("next/navigation", () => ({
+  useRouter() {
+    return {
+      prefetch: () => null,
+    };
+  },
+}));
 
 describe("Home", () => {
   it("renders a heading", () => {

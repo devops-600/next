@@ -2,6 +2,7 @@
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import React from "react";
+import styles from "./platformnav.module.css";
 
 const PlatformNav = () => {
   const pathname = usePathname();
@@ -19,9 +20,21 @@ const PlatformNav = () => {
       href: "/gcp",
       label: "GCP",
     },
+    {
+      href: "/k8s",
+      label: "K8s",
+    },
+    {
+      href: "/local",
+      label: "Local",
+    },
+    {
+      href: "/ansible",
+      label: "Ansible",
+    },
   ];
   return (
-    <div>
+    <div className={styles.leftnav}>
       {links.map((link, idx) => {
         const isActive = pathname.startsWith(link.href);
         return (
@@ -29,8 +42,12 @@ const PlatformNav = () => {
             key={idx}
             href={link.href}
             className={`${
-              isActive ? "font-extrabold" : ""
-            } mr-4 font-medium text-blue-600 dark:text-blue-500 hover:underline`}
+              isActive
+                ? "font-extrabold bg-blue-500 text-zinc-100"
+                : "text-blue-600 dark:text-blue-500"
+            } font-medium text-center content-center m-auto w-full hover:underline ${
+              styles.navlink
+            }`}
           >
             {link.label}
           </Link>
