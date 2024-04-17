@@ -1,5 +1,6 @@
 import { User, columns } from "./columns";
 import { DataTable } from "./data-table";
+import { DataTablePagination } from "./paginated-table";
 import { promises as fs } from "fs";
 
 async function getUsers(): Promise<User[]> {
@@ -12,9 +13,9 @@ const Aws = async () => {
   const data = JSON.parse(file).users;
 
   return (
-    <section className="py-4">
+    <section className="py-2">
       <div className="container">
-        <h1 className="text-3xl font-bold">List</h1>
+        {/* <h1 className="text-xl font-bold">List</h1> */}
         <DataTable columns={columns} data={data} />
       </div>
     </section>

@@ -63,6 +63,8 @@
       --border: 217.2 32.6% 17.5%;
       --input: 217.2 32.6% 17.5%;
       --ring: 212.7 26.8% 83.9%;
+
+      --radius: 0.5rem;
     }
   }
 
@@ -72,5 +74,6 @@
     }
     body {
       @apply bg-background text-foreground;
+      font-feature-settings: "rlig" 1, "calt" 1;
     }
   }

@@ -17,10 +17,11 @@
     "baseUrl": ".",
     "types": ["@testing-library/jest-dom"],
     "paths": {
-      "@/components/*": ["@/components/*"],
+      "@/components/*": ["components/*"],
       "@/app/*": ["app/*"],
       "@/styles/*": ["styles/*"],
-      "@/utils/*": ["utils/*"]
+      "@/utils/*": ["utils/*"],
+      "@/*": ["./*"]
     },
     "plugins": [
       {

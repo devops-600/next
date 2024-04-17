@@ -32,6 +32,10 @@ const PlatformNav = () => {
       href: "/ansible",
       label: "Ansible",
     },
+    {
+      href: "/report",
+      label: "Report",
+    },
   ];
   return (
     <div className={styles.leftnav}>
