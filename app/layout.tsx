@@ -19,19 +19,21 @@ export default function RootLayout({
     <html lang="en">
       <body>
         {children}
-        <footer className="flex content-center text-center mx-auto">
-          <div className={styles.flex}>
-            <span className="mr-2">DevOps600</span>
-            <Image
-              className="mr-2"
-              src={copyleft}
-              alt="copyleft"
-              width="20"
-              height="20"
-            ></Image>
-            <span>Copyleft 2024</span>
-          </div>
-        </footer>
+        <div className="container">
+          <footer className="flex content-center text-center mx-auto mt-auto">
+            <div className={styles.flex}>
+              <span className="mr-2">DevOps600</span>
+              <Image
+                className="mr-2"
+                src={copyleft}
+                alt="copyleft"
+                width="20"
+                height="20"
+              ></Image>
+              <span>Copyleft 2024</span>
+            </div>
+          </footer>
+        </div>
       </body>
     </html>
   );
