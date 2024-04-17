@@ -14,7 +14,7 @@ const TopTime = () => {
   }, []);
 
   return (
-    <div className="p-4">
+    <div className="p-2">
       {isClient && (
         <table>
           <tr>
