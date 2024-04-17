@@ -17,22 +17,27 @@ const TopTime = () => {
     <div className="p-2">
       {isClient && (
         <table>
-          <tr>
-            <th></th>
-            <th></th>
-          </tr>
-          <tr>
-            <td>{time.toLocaleString("en-CA")}</td>
-            <td>{Intl.DateTimeFormat().resolvedOptions().timeZone}</td>
-          </tr>
-          <tr>
-            <td>
-              {time.toLocaleString("en-CA", {
-                timeZone: "UTC",
-              })}
-            </td>
-            <td>UTC</td>
-          </tr>
+          <thead>
+            <tr>
+              <th></th>
+              <th></th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>{time.toLocaleString("en-CA")}</td>
+              <td>{Intl.DateTimeFormat().resolvedOptions().timeZone}</td>
+            </tr>
+
+            <tr>
+              <td>
+                {time.toLocaleString("en-CA", {
+                  timeZone: "UTC",
+                })}
+              </td>
+              <td>UTC</td>
+            </tr>
+          </tbody>
         </table>
       )}
     </div>

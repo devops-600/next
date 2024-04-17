@@ -1,16 +1,16 @@
-import { User, columns } from "./columns";
+import { Host, columns } from "./columns";
 import { DataTable } from "./data-table";
 import { DataTablePagination } from "./paginated-table";
 import { promises as fs } from "fs";
 
-async function getUsers(): Promise<User[]> {
-  const response = await fetch("/api/users");
+async function getUsers(): Promise<Host[]> {
+  const response = await fetch("/api/hosts");
   return response.json();
 }
 
 const Aws = async () => {
   const file = await fs.readFile(process.cwd() + "/db.json", "utf8");
-  const data = JSON.parse(file).users;
+  const data = JSON.parse(file).hosts;
 
   return (
     <section className="py-2">

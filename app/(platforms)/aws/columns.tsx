@@ -17,15 +17,17 @@ import {
 
 // This type is used to define the shape of our data.
 // You can use a Zod schema here if you want.
-export type User = {
+export type Host = {
   id: string;
+  ip: string;
   name: string;
-  email: string;
-  image: string;
-  lastSeen: string;
+  desc: string;
+  env: number;
 };
 
-export const columns: ColumnDef<User>[] = [
+const EnvMap = ["", "Production", "Test", "Development", "QA", "UAT"];
+
+export const columns: ColumnDef<Host>[] = [
   {
     id: "select",
     header: ({ table }) => (
@@ -49,7 +51,7 @@ export const columns: ColumnDef<User>[] = [
     enableHiding: false,
   },
   {
-    accessorKey: "username",
+    accessorKey: "ip",
     // header: "Name",
     header: ({ column }) => {
       return (
@@ -57,24 +59,63 @@ export const columns: ColumnDef<User>[] = [
           variant="ghost"
           onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}
         >
-          Name
+          ip
           <ArrowUpDown className="ml-2 h-4 w-4" />
         </Button>
       );
     },
   },
   {
-    accessorKey: "email",
-    header: "Email",
+    accessorKey: "name",
+    header: "Name",
   },
   {
-    accessorKey: "birthDate",
-    header: "Birth Date",
+    accessorKey: "env",
+    // header: "Environment",
+    header: ({ column }) => {
+      return (
+        <Button
+          variant="ghost"
+          onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}
+        >
+          Environment
+          <ArrowUpDown className="ml-2 h-4 w-4" />
+        </Button>
+      );
+    },
+    cell: ({ row }) => {
+      const env = parseInt(row.getValue("env")) || 1;
+      const formatted = EnvMap[env];
+
+      return <div className="font-medium">{formatted}</div>;
+    },
+  },
+  {
+    accessorKey: "desc",
+    header: "Description",
+    enableResizing: false,
+    cell: ({ row }) => {
+      const desc = row.original.desc;
+
+      return (
+        <div
+          className="text-sm text-muted-foreground"
+          style={{
+            width: "20rem",
+            height: "2.5rem",
+            overflow: "hidden",
+            textOverflow: "ellipsis",
+          }}
+        >
+          {desc}
+        </div>
+      );
+    },
   },
   {
     id: "actions",
     cell: ({ row }) => {
-      const user = row.original;
+      const host = row.original;
 
       return (
         <DropdownMenu>
@@ -87,13 +128,15 @@ export const columns: ColumnDef<User>[] = [
           <DropdownMenuContent align="end">
             <DropdownMenuLabel>Actions</DropdownMenuLabel>
             <DropdownMenuItem
-              onClick={() => navigator.clipboard.writeText(user.email)}
+              onClick={() => navigator.clipboard.writeText(host.ip)}
             >
               Copy host IP
             </DropdownMenuItem>
             <DropdownMenuSeparator />
-            <DropdownMenuItem>View customer</DropdownMenuItem>
-            <DropdownMenuItem>View payment details</DropdownMenuItem>
+            <DropdownMenuItem>View host details</DropdownMenuItem>
+            <DropdownMenuItem className="bg-red-400 text-slate-100">
+              Delete
+            </DropdownMenuItem>
           </DropdownMenuContent>
         </DropdownMenu>
       );

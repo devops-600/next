@@ -38,6 +38,7 @@ interface DataTableProps<TData, TValue> {
   data: TData[];
 }
 
+
 export function DataTable<TData, TValue>({
   columns,
   data,
@@ -73,12 +74,10 @@ export function DataTable<TData, TValue>({
     <>
       <div className="flex items-center py-4">
         <Input
-          placeholder="Filter username..."
-          value={
-            (table.getColumn("username")?.getFilterValue() as string) ?? ""
-          }
+          placeholder="Filter IP..."
+          value={(table.getColumn("ip")?.getFilterValue() as string) ?? ""}
           onChange={(event) =>
-            table.getColumn("username")?.setFilterValue(event.target.value)
+            table.getColumn("ip")?.setFilterValue(event.target.value)
           }
           className="max-w-sm"
         />
