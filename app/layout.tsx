@@ -3,6 +3,7 @@ import React from "react";
 import Image from "next/image";
 import copyleft from "../public/copyleft.svg";
 import styles from "./layout.module.css";
+import { Metadata } from "next";
 
 export const metadata: Metadata = {
   title: "Operations Platform",

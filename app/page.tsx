@@ -14,6 +14,7 @@ export default function HomePage() {
   const router = useRouter();
 
   const handleClickButton = () => {
+    if (!username || !password) return;
     localStorage.setItem("username", username);
     localStorage.setItem("password", password);
     router.push("/aws");
@@ -23,7 +24,7 @@ export default function HomePage() {
     <div className={styles.index}>
       <h1 className="text-3xl font-bold mb-8">Operations Platform</h1>
       <div className={styles.center}>
-        <form>
+        <form action="#">
           <input
             type="email"
             name="email"

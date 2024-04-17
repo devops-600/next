@@ -9,11 +9,15 @@ export default function PlatformsLayout({
 }: {
   children: React.ReactNode;
 }) {
+  const [username, setUsername] = React.useState("");
+  React.useEffect(() => {
+    setUsername(localStorage.getItem("username") || "");
+  }, []);
   return (
     <>
       <div className="flex">
         <div className="p-4 text-3xl mr-4">
-          Hello {localStorage.getItem("username")}
+          Hello {username ? username : "Stranger"}
         </div>
         <TopTime />
       </div>
