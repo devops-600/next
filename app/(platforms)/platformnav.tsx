@@ -33,6 +33,22 @@ const PlatformNav = () => {
       label: "Ansible",
     },
     {
+      href: "/terraform",
+      label: "Terraform",
+    },
+    {
+      href: "/stackstorm",
+      label: "StackStorm",
+    },
+    {
+      href: "/saltstack",
+      label: "SaltStack",
+    },
+    {
+      href: "/grafana",
+      label: "Grafana",
+    },
+    {
       href: "/report",
       label: "Report",
     },
