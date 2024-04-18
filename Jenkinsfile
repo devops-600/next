@@ -16,14 +16,14 @@ pipeline {
         sh 'yarn install'
       }
     }
-    stage('Test') {
-      steps {
-        sh 'yarn test'
-      }
-    }
     stage('Build') {
       steps {
         sh 'yarn build'
+      }
+    }
+    stage('Test') {
+      steps {
+        sh 'yarn test'
       }
     }
     stage('Image and tag') {
