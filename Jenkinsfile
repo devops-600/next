@@ -30,7 +30,7 @@ pipeline {
       steps {
         echo 'tag ghcr.io'
         sh 'docker build -t ghcr.io/$MYREPO:latest .'
-        // sh 'docker tag ghcr.io/$MYREPO:$BUILD_NUMBER ghcr.io/$MYREPO:latest'
+        sh 'docker tag ghcr.io/$MYREPO:$BUILD_NUMBER ghcr.io/$MYREPO:latest'
       }
     }
     stage('ghcr.io') {
@@ -39,7 +39,7 @@ pipeline {
           echo 'ghcr login'
           sh 'echo $GHCR_CREDENTIALS_PSW | docker login ghcr.io -u $GHCR_CREDENTIALS_USR --password-stdin'
           echo 'ghcr push'
-          // sh 'docker push ghcr.io/$MYREPO:$BUILD_NUMBER'
+          sh 'docker push ghcr.io/$MYREPO:$BUILD_NUMBER'
           sh 'docker push ghcr.io/$MYREPO:latest'
         }
       }
