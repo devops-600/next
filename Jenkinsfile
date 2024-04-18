@@ -29,7 +29,7 @@ pipeline {
     stage('Image and tag') {
       steps {
         echo 'tag ghcr.io'
-        sh 'docker build -t ghcr.io/$MYREPO:latest .'
+        sh 'docker build -t ghcr.io/$MYREPO:$BUILD_NUMBER .'
         sh 'docker tag ghcr.io/$MYREPO:$BUILD_NUMBER ghcr.io/$MYREPO:latest'
       }
     }
