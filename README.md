@@ -36,5 +36,7 @@ npm test
 
 with yarn
 ```
+yarn
+yarn test
 yarn dev
 ```
